@@ -1,0 +1,30 @@
+{% extends "base_login.html" %} {% block title %} Forgot Password {% endblock %} {% block body %}
+<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+  <div class="col my-5">
+    <div class="card">
+      <div class="card-header">Verify OTP</div>
+      <div class="card-body">
+        <form class="form-horizontal" method="post" action="/verify-otp">
+          <div class="form-group">
+            <label for="email" class="cols-sm-2 control-label">Your OTP</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                <input type="hidden" name="email" value="{{res['email']}}" />
+                <input type="hidden" name="origin" value="{{res['origin']}}" />
+                <input type="text" class="form-control" name="otp" id="otp" placeholder="Enter your OTP" required />
+              </div>
+              {% if res['response'] == 'error' %}
+              <div class="mt-2 p-1 alert alert-danger text pl-3" role="alert">{{res['message']}}</div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Verify</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

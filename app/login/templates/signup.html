@@ -1,0 +1,60 @@
+{% extends "base_login.html" %} {% block title %} Sign Up {% endblock %} {% block head %} {% endblock %} {% block body %}
+<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+  <div class="col my-5">
+    <div class="card">
+      <div class="card-header">Register</div>
+      <div class="card-body">
+        <form class="form-horizontal" method="post" onsubmit="return signup_verification()" action="/signup">
+          <div class="form-group">
+            <label for="name" class="cols-sm-2 control-label">Your Name</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                <input type="text" class="form-control" name="name" id="name" placeholder="Enter your Name" required />
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email" class="cols-sm-2 control-label">Your Email</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                <input type="text" class="form-control" name="email" id="email" placeholder="Enter your Email" value="{{ res['email'] if res else ''}}" required />
+              </div>
+              {% if res['response'] %}
+              <div class="mt-2 p-1 alert alert-danger text pl-3" role="alert">{{res['message']}}</div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password" class="cols-sm-2 control-label">Password</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Enter your Password" required />
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirm your Password" required />
+              </div>
+            </div>
+            <div id="password-error"></div>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+          </div>
+          <div class="login-register">
+            <a href="/login">Login</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

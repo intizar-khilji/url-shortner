@@ -1,0 +1,50 @@
+{% extends "base_login.html" %} {% block title %} Login {% endblock %} {% block head %} {% endblock %} {% block body %}
+
+<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+  <div class="col my-5">
+    <div class="card">
+      <div class="card-header">Login</div>
+      <div class="card-body">
+        <form class="form-horizontal" onsubmit="return login_verification()" method="post" action="/login">
+          <div class="form-group">
+            <label for="email" class="cols-sm-2 control-label">Email</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                <input type="text" class="form-control" name="email" id="email" placeholder="Enter your Email" />
+              </div>
+            </div>
+            {% if res['response'] == 'error' %}
+            <div class="mt-2 p-1 alert alert-danger text pl-3" role="alert">{{res['message']}}</div>
+            {% elif res['response'] == 'success' %}
+            <div class="mt-2 p-1 alert alert-success text pl-3" role="alert">{{res['message']}}</div>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="password" class="cols-sm-2 control-label">Password</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Enter your Password" />
+              </div>
+            </div>
+            <div id="password-error"></div>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Login</button>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div class="login-register">
+              <a href="/forgot-password">Forgot Password</a>
+            </div>
+            <div>
+              <a href="/signup">Register</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

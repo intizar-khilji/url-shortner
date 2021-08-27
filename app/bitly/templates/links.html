@@ -1,0 +1,33 @@
+{% extends "base_bitly.html" %} {% block title %} Links {% endblock %}
+{% block body %}
+<div class="container-fluid">
+  {% if user_details %}
+  <div class="row justify-content-center">
+    <div class="col">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Original URL</th>
+            <th scope="col">Short URL</th>
+            <th scope="col">Clicks</th>
+            <th scope="col">Date</th>
+            <th scope="col">Active</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user_link in user_links %}
+          <tr>
+            <td><a href="{{ user_link[0] }}" target="_blank">{{ user_link[0] }}</a></td>
+            <td><a href="{{ user_link[1] }}" target="_blank">http://localhost:5000/{{ user_link[1] }}</a></td>
+            <td>{{ user_link[2] }}</td>
+            <td>{{ user_link[3] }}</td>
+            <td><button id="send">{{'Deactivate' if user_link[4] else 'Activate'}}</button></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

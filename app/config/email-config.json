@@ -1,0 +1,7 @@
+{
+    "server" : "smtp.gmail.com",
+    "port" : 465,
+    "use-ssl" : true,
+    "username" : "intizar4khilji@gmail.com",
+    "password" : "AminKhiljiakinkak"
+}
